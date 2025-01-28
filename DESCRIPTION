@@ -1,0 +1,13 @@
+Package: dqb2
+Title: A fork from dash-query-builder
+Version: 1.0.0
+Description: A fork from dash-query-builder
+Depends: R (>= 3.0.2)
+Imports: 
+Suggests: 
+License: MIT + file LICENSE
+URL: https://github.com/mhdeeb/dqb2
+BugReports: https://github.com/mhdeeb/dqb2/issues
+Encoding: UTF-8
+LazyData: true
+KeepSource: true
