@@ -181,8 +181,14 @@ const BaseBuilder = (props: StyledProps) => {
     [alwaysShowActionButtons]
   );
 
+  const handleKeyDown = useCallback((event: any) => {
+    const ENTER_KEY = 13;
+
+    if (event.keyCode === ENTER_KEY) sendQueryRef.current();
+  }, []);
+
   return (
-    <div id={id}>
+    <div id={id} onKeyDown={handleKeyDown}>
       <Query
         {...state.config}
         value={state.immutableTree}

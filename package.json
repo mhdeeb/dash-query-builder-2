@@ -1,6 +1,6 @@
 {
   "name": "dqb2",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A fork from dash-query-builder",
   "main": "index.ts",
   "repository": {

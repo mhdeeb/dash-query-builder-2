@@ -254,7 +254,7 @@ def update_output(
     mongoDBFormat,
     elasticSearchFormat,
 ):
-    # print("tree", tree)
+    print("tree", tree)
     val = html.Div(
         [
             html.H1("tree"),
