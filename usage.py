@@ -21,7 +21,6 @@ fields = {
             "valueSources": ["value"],
             "fieldSettings": {"min": 10, "max": 100},
             "preferWidgets": ["slider", "rangeslider"],
-            "operators": ["equal", "between"],
         },
         "color": {
             "label": "Color",
@@ -255,6 +254,7 @@ def update_output(
     mongoDBFormat,
     elasticSearchFormat,
 ):
+    # print("tree", tree)
     val = html.Div(
         [
             html.H1("tree"),
@@ -295,6 +295,13 @@ def update_fields(n):
         return fields["fields2"]
     else:
         return fields["fields"]
+
+
+@callback(
+    Input("dqb", "fields"),
+)
+def field22(n):
+    print("fields", n)
 
 
 if __name__ == "__main__":

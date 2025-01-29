@@ -1,6 +1,6 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import React from "react";
-import { FormatProps } from "../props";
+import { FormatProps, loadFormatType } from "../props";
 import {
   Utils as QbUtils,
   Query,
@@ -16,9 +16,50 @@ import { StyledProps } from "./types";
 const { loadTree, Validation, getTree } = QbUtils;
 import { emptyTree, emptyImmutableTree, loadNewTree } from "./utils";
 
+type StateType = {
+  immutableTree: ImmutableTree;
+  config: Config;
+};
+
+function makeProps(state: StateType, tree: JsonTree): FormatProps {
+  return {
+    sqlFormat: QbUtils.sqlFormat(state.immutableTree, state.config),
+    tree,
+    jsonLogicFormat: QbUtils.jsonLogicFormat(state.immutableTree, state.config)
+      .logic,
+    mongoDBFormat: QbUtils.mongodbFormat(state.immutableTree, state.config),
+    queryString: QbUtils.queryString(state.immutableTree, state.config),
+    elasticSearchFormat: QbUtils.elasticSearchFormat(
+      state.immutableTree,
+      state.config
+    ),
+    spelFormat: QbUtils.spelFormat(state.immutableTree, state.config),
+    queryBuilderFormat: QbUtils.queryBuilderFormat(
+      state.immutableTree,
+      state.config
+    ),
+  };
+}
+
+// function useDidUpdateEffect(fn: Function, inputs: React.DependencyList) {
+//   const isMountingRef = useRef(true);
+
+//   // useEffect(() => {
+//   //   isMountingRef.current = true;
+//   // }, []);
+
+//   useEffect(() => {
+//     if (!isMountingRef.current) {
+//       return fn();
+//     } else {
+//       isMountingRef.current = false;
+//     }
+//   }, inputs);
+// }
+
 /**
  * Component description
- */
+ **/
 const BaseBuilder = (props: StyledProps) => {
   const {
     id,
@@ -32,118 +73,98 @@ const BaseBuilder = (props: StyledProps) => {
     alwaysShowActionButtons,
     styleConfig,
   } = props;
-  const previousTree: React.MutableRefObject<JsonTree> = useRef(null);
 
-  const isFirstRun = useRef(true);
   const initialConfig: Config = mergeAll([styleConfig, config]);
-  const completeConfig = { ...initialConfig, fields: fields };
+  const completeConfig = { ...initialConfig, fields };
   const initialLoadItem = props[loadFormat] || emptyTree;
-  const initialImmutableTree = loadNewTree(
-    loadFormat,
-    initialLoadItem,
-    completeConfig
-  );
-  
-  const [state, setState] = useState({
-    immutableTree: initialImmutableTree,
-    config: completeConfig,
+
+  const [state, setState] = useState<StateType>(() => {
+    let immutableTree: ImmutableTree;
+    try {
+      immutableTree = loadNewTree(loadFormat, initialLoadItem, completeConfig);
+    } catch {
+      immutableTree = emptyImmutableTree;
+    }
+    return { immutableTree, config: completeConfig };
   });
 
-  useEffect(() => {
-    if (previousTree.current !== tree) {
-      let newImmutableTree = loadTree(tree);
-      let newProps: FormatProps = {
-        sqlFormat: QbUtils.sqlFormat(newImmutableTree, state.config),
-        tree: tree,
-        jsonLogicFormat: QbUtils.jsonLogicFormat(newImmutableTree, state.config)
-          .logic,
-        mongoDBFormat: QbUtils.mongodbFormat(newImmutableTree, state.config),
-        queryString: QbUtils.queryString(newImmutableTree, state.config),
-        elasticSearchFormat: QbUtils.elasticSearchFormat(
-          newImmutableTree,
-          state.config
-        ),
-        spelFormat: QbUtils.spelFormat(newImmutableTree, state.config),
-        queryBuilderFormat: QbUtils.queryBuilderFormat(
-          newImmutableTree,
-          state.config
-        ),
-      };
-      setState((prevState) => ({
-        ...prevState,
-        immutableTree: newImmutableTree,
-      }));
-      setProps({ ...newProps });
-      previousTree.current = tree;
-    }
-  }, [tree]);
+  // const previousTree = useRef<JsonTree | null>(null);
+  // const updateTree = useCallback(
+  //   (format: loadFormatType, formatValue: string | Object) => {
+  //     const newTree = loadNewTree(format, formatValue, state.config);
 
-  useEffect(() => {
-    // if (isFirstRun.current) {
-    //     return;
-    // }
-    if (loadFormat === "spelFormat" && spelFormat !== undefined) {
-      let newTree = loadNewTree("spelFormat", spelFormat, state.config);
-      setState((prevState) => ({
-        ...prevState,
-        immutableTree: newTree,
-      }));
-      setProps({ tree: getTree(newTree) });
-    }
-  }, [spelFormat]);
+  //     setState((prevState) => {
+  //       return { ...prevState, immutableTree: newTree };
+  //     });
 
-  useEffect(() => {
-    // if (isFirstRun.current) {
-    //     return;
-    // }
-    if (loadFormat === "jsonLogicFormat" && jsonLogicFormat !== undefined) {
-      let newTree = loadNewTree(
-        "jsonLogicFormat",
-        jsonLogicFormat,
-        state.config
-      );
-      setState((prevState) => ({
-        ...prevState,
-        immutableTree: newTree,
-      }));
-      setProps({ tree: getTree(newTree) });
-    }
-  }, [jsonLogicFormat]);
+  //     setProps({ tree: getTree(newTree) });
+  //   },
+  //   [state]
+  // );
 
+  // useEffect(() => {
+  //   if (loadFormat === "spelFormat" && spelFormat) {
+  //     updateTree("spelFormat", spelFormat);
+  //   } else if (loadFormat === "jsonLogicFormat" && jsonLogicFormat) {
+  //     updateTree("jsonLogicFormat", jsonLogicFormat);
+  //   }
+  // }, []);
+  const isFirstRun = useRef(true);
   useEffect(() => {
     if (isFirstRun.current) {
       isFirstRun.current = false;
       return;
     }
-    setProps({
-      tree: emptyTree,
+
+    setState((prevState) => {
+      if (prevState.config.fields === fields) return prevState;
+      return {
+        immutableTree: prevState.immutableTree,
+        config: { ...prevState.config, fields },
+      };
     });
-    const newConfig = { ...state.config, fields: fields };
-    setState((prevState) => ({
-      ...prevState,
-      immutableTree: emptyImmutableTree,
-      config: newConfig,
-    }));
   }, [fields]);
+
+  const immutableTreeRef = useRef(state.immutableTree);
+  const configRef = useRef(state.config);
+
+  useEffect(() => {
+    immutableTreeRef.current = state.immutableTree;
+    configRef.current = state.config;
+  }, [state.immutableTree, state.config]);
+
+  const sendQuery = useCallback(() => {
+    const { fixedTree, nonFixedErrors } = Validation.sanitizeTree(
+      immutableTreeRef.current,
+      configRef.current
+    );
+
+    if (!nonFixedErrors.length) {
+      setProps(
+        makeProps(
+          {
+            immutableTree: immutableTreeRef.current,
+            config: configRef.current,
+          },
+          getTree(fixedTree)
+        )
+      );
+    } else {
+      console.error("Validation errors", nonFixedErrors);
+    }
+  }, []);
 
   const onChange = useCallback(
     (immutableTree: ImmutableTree, config: Config) => {
-      setState((prevState) => ({
-        ...prevState,
-        immutableTree: immutableTree,
-        config: config,
-      }));
-
-      const sanitizationResult = Validation.sanitizeTree(immutableTree, config);
-      console.log(sanitizationResult);
-
-      if (!sanitizationResult.nonFixedErrors.length) {
-        const jsonTree = getTree(sanitizationResult.fixedTree);
-        setProps({ tree: jsonTree });
-      }
+      setState((prevState) => {
+        return { ...prevState, immutableTree, config };
+      });
     },
-    []
+    [setState]
   );
+
+  const sendQueryRef = useRef(sendQuery);
+  sendQueryRef.current = sendQuery;
 
   const renderBuilder = useCallback(
     (props: BuilderProps) => (
@@ -153,6 +174,7 @@ const BaseBuilder = (props: StyledProps) => {
             "query-builder " + (!alwaysShowActionButtons ? "qb-lite" : "")
           }>
           <Builder {...props} />
+          <button onClick={() => sendQueryRef.current()}>Search</button>
         </div>
       </div>
     ),

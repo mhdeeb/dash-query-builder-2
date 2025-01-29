@@ -1,0 +1,15 @@
+[project]
+name = "dqb2"
+version = "1.0.2"
+authors = [
+    { name = "Mohamed El-Deeb", email = "s-mohamed.eldeeb@zewailcity.edu.eg" },
+]
+description = "A fork from dash-query-builder"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = ["Programming Language :: Python :: 3"]
+license = { text = "MIT" }
+
+[project.urls]
+Homepage = "https://github.com/mhdeeb/dash-query-builder-2"
+Issues = "https://github.com/mhdeeb/dash-query-builder-2/issues"
