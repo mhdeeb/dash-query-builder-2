@@ -840,7 +840,7 @@ Those elements have the following types:
 - `queryString` (String; optional): Query string
 - `spelFormat` (String; optional): SPEL query string
 - `sqlFormat` (String; optional): The WHERE clause in SQL
-- `theme` (a value equal to: 'mui', 'antd', 'fluent', 'bootstrap', 'basic'; optional): The theme/styling used
+- `theme` (a value equal to: 'mui', 'material', 'antd', 'fluent', 'bootstrap', 'basic'; optional): The theme/styling used
 - `tree` (Bool | Real | String | Dict | Array; optional): The JSON representation of the tree
 """
 function ''_dash_query_builder(; kwargs...)

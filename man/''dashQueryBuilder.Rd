@@ -862,7 +862,7 @@ those elements have the following types:
 
 \item{sqlFormat}{Character. The WHERE clause in SQL}
 
-\item{theme}{A value equal to: 'mui', 'antd', 'fluent', 'bootstrap', 'basic'. The theme/styling used}
+\item{theme}{A value equal to: 'mui', 'material', 'antd', 'fluent', 'bootstrap', 'basic'. The theme/styling used}
 
 \item{tree}{Logical | numeric | character | named list | unnamed list. The JSON representation of the tree}
 }

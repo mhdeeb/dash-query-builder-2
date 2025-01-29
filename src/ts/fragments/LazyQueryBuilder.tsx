@@ -2,6 +2,9 @@ import { Props } from "props";
 import React from "react";
 
 const LazyMui = React.lazy(() => import(/* webpackChunkName: "mui" */ "./Mui"));
+const LazyMaterial = React.lazy(
+  () => import(/* webpackChunkName: "material" */ "./Material")
+);
 const LazyBootstrap = React.lazy(
   () => import(/* webpackChunkName: "bootstrap" */ "./Bootstrap")
 );
@@ -17,10 +20,12 @@ const LazyBasic = React.lazy(
 
 const LazyQueryBuilder = (props: Props) => {
   switch (props.theme) {
-    case 'fluent':
-        return <LazyFluent {...props} />;
-    case 'mui':
-        return <LazyMui {...props} />;
+    case "fluent":
+      return <LazyFluent {...props} />;
+    case "mui":
+      return <LazyMui {...props} />;
+    case "material":
+      return <LazyMaterial {...props} />;
     case "antd":
       return <LazyAntd {...props} />;
     case "bootstrap":

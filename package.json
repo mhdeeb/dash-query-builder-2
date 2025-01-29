@@ -1,6 +1,6 @@
 {
   "name": "dqb2",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A fork from dash-query-builder",
   "main": "index.ts",
   "repository": {
@@ -44,6 +44,7 @@
     "@react-awesome-query-builder/antd": "^6.6.12",
     "@react-awesome-query-builder/bootstrap": "^6.6.12",
     "@react-awesome-query-builder/fluent": "^6.6.12",
+    "@react-awesome-query-builder/material": "^6.6.12",
     "@react-awesome-query-builder/mui": "^6.6.12",
     "@react-awesome-query-builder/ui": "^6.6.12"
   }

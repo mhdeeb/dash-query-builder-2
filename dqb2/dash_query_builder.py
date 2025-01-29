@@ -1692,7 +1692,7 @@ Keyword arguments:
 - sqlFormat (string; optional):
     The WHERE clause in SQL.
 
-- theme (a value equal to: 'mui', 'antd', 'fluent', 'bootstrap', 'basic'; default 'basic'):
+- theme (a value equal to: 'mui', 'material', 'antd', 'fluent', 'bootstrap', 'basic'; default 'basic'):
     The theme/styling used.
 
 - tree (boolean | number | string | dict | list; default emptyTree):

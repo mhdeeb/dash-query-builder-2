@@ -1,6 +1,6 @@
 Package: dqb2
 Title: A fork from dash-query-builder
-Version: 1.0.3
+Version: 1.0.4
 Description: A fork from dash-query-builder
 Depends: R (>= 3.0.2)
 Imports: 

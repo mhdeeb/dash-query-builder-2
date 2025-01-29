@@ -1,6 +1,6 @@
 [project]
 name = "dqb2"
-version = "1.0.3"
+version = "1.0.4"
 authors = [
     { name = "Mohamed El-Deeb", email = "s-mohamed.eldeeb@zewailcity.edu.eg" },
 ]
