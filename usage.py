@@ -149,7 +149,7 @@ app.layout = html.Div(
             # tree=tree,
             spelFormat=spelFormat,
             loadFormat="spelFormat",
-            theme="material",
+            theme="mui",
         ),
         html.Button("Change Fields", id="fields-button"),
         html.Hr(),

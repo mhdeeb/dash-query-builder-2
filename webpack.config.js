@@ -1,5 +1,7 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const packagejson = require("./package.json");
 const dashLibraryName = packagejson.name.replace(/-/g, "_");
@@ -10,6 +12,9 @@ module.exports = function (env, argv) {
   return {
     mode: isProduction ? "production" : "development",
     entry: [path.join(__dirname, "src/ts/index.ts")],
+    optimization: {
+      minimize: isProduction,
+    },
     output: {
       path: path.join(__dirname, dashLibraryName),
       filename: `${dashLibraryName}.js`,
@@ -40,6 +45,7 @@ module.exports = function (env, argv) {
       new MiniCssExtractPlugin({
         filename: "[name].css",
       }),
+      // new BundleAnalyzerPlugin(),
     ],
     module: {
       rules: [

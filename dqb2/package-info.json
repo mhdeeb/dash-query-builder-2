@@ -1,6 +1,6 @@
 {
   "name": "dqb2",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A fork from dash-query-builder",
   "main": "index.ts",
   "repository": {
@@ -13,9 +13,14 @@
   "homepage": "https://github.com/mhdeeb/dash-query-builder-2",
   "scripts": {
     "build:js::dev": "webpack --mode development",
-    "build:js": "webpack",
+    "build:js": "webpack --mode production",
     "build:backends": "dash-generate-components ./src/ts/components dqb2 -p package-info.json --r-prefix '' --jl-prefix '' --ignore \\.test\\.",
-    "build": "npm run build:js && npm run build:backends",
+    "build:wheel": "python -m build --wheel",
+    "build": "npm run build:js && npm run build:backends && npm run build:wheel",
+    "bump": "python scripts/make_version.py",
+    "clean": "rm -rf dist && rm -rf build",
+    "pack": "npm run bump && npm run clean && npm run build",
+    "publish": "twine upload dist/*",
     "watch": "npm run build:js::dev -- --watch"
   },
   "devDependencies": {
@@ -32,6 +37,7 @@
     "ts-loader": "^9.5.2",
     "typescript": "^5.7.3",
     "webpack": "^5.97.1",
+    "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1"
   },
   "peerDependencies": {
@@ -44,7 +50,6 @@
     "@react-awesome-query-builder/antd": "^6.6.12",
     "@react-awesome-query-builder/bootstrap": "^6.6.12",
     "@react-awesome-query-builder/fluent": "^6.6.12",
-    "@react-awesome-query-builder/material": "^6.6.12",
     "@react-awesome-query-builder/mui": "^6.6.12",
     "@react-awesome-query-builder/ui": "^6.6.12"
   }
