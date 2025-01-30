@@ -55,9 +55,10 @@ module.exports = function (env, argv) {
           exclude: /node_modules/,
         },
         {
-          test: /\.css$/,
+          test: /\.css$/i,
           use: [
-            isProduction ? MiniCssExtractPlugin.loader : "style-loader",
+            // isProduction ? MiniCssExtractPlugin.loader: "style-loader",
+            "style-loader",
             "css-loader",
           ],
         },
