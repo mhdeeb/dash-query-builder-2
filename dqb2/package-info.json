@@ -1,6 +1,6 @@
 {
   "name": "dqb2",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A fork from dash-query-builder",
   "main": "index.ts",
   "repository": {
@@ -39,10 +39,6 @@
     "webpack": "^5.97.1",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1"
-  },
-  "peerDependencies": {
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0"
   },
   "author": "Mohamed El-Deeb <s-mohamed.eldeeb@zewailcity.edu.eg>",
   "license": "MIT",
