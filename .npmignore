@@ -1,5 +1,9 @@
 # dependencies
 /node_modules
+/venv
+/inst
+/deps
+/build
 
 # testing
 /coverage
