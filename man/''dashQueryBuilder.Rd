@@ -11,10 +11,11 @@ The Dash Query Builder component
 
 \usage{
 ''dashQueryBuilder(id=NULL, alwaysShowActionButtons=NULL, config=NULL,
-elasticSearchFormat=NULL, fields=NULL, jsonLogicFormat=NULL,
-loadFormat=NULL, mongoDBFormat=NULL,
-queryBuilderFormat=NULL, queryString=NULL, spelFormat=NULL,
-sqlFormat=NULL, theme=NULL, tree=NULL)
+debounceTime=NULL, dynamic=NULL, elasticSearchFormat=NULL,
+fields=NULL, jsonLogicFormat=NULL, loadFormat=NULL,
+mongoDBFormat=NULL, queryBuilderFormat=NULL,
+queryString=NULL, spelFormat=NULL, sqlFormat=NULL,
+theme=NULL, tree=NULL)
 }
 
 \arguments{
@@ -652,6 +653,10 @@ those elements have the following types:
   - tooltip (character; optional)
   - funcs (list with named elements and values of type logical | numeric | character | named list | unnamed list; optional)
   - ctx (list with named elements and values of type logical | numeric | character | named list | unnamed list; required). The config object. See the [Config](https://github.com/ukrbublik/react-awesome-query-builder/blob/master/CONFIG.adoc docs).}
+
+\item{debounceTime}{Numeric. debounce time for dynamic update.}
+
+\item{dynamic}{Logical. Toggles whether the tree is updated automatically or through a button.}
 
 \item{elasticSearchFormat}{Lists containing elements 'constructor', 'tostring', 'tolocalestring', 'valueof', 'hasownproperty', 'isprototypeof', 'propertyisenumerable'.
 those elements have the following types:

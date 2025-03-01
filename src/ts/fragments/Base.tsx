@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import React from "react";
+import { useDebouncedCallback } from "use-debounce";
 import { FormatProps, loadFormatType } from "../props";
 import {
   Utils as QbUtils,
@@ -67,6 +68,8 @@ const BaseBuilder = (props: StyledProps) => {
     loadFormat,
     fields,
     config,
+    dynamic,
+    debounceTime,
     setProps,
     spelFormat,
     jsonLogicFormat,
@@ -154,17 +157,23 @@ const BaseBuilder = (props: StyledProps) => {
     }
   }, []);
 
+  const sendQueryRef = useRef(sendQuery);
+  sendQueryRef.current = sendQuery;
+
+  const debounced = useDebouncedCallback((state) => {
+    sendQueryRef.current();
+  }, debounceTime);
+
   const onChange = useCallback(
     (immutableTree: ImmutableTree, config: Config) => {
       setState((prevState) => {
         return { ...prevState, immutableTree, config };
       });
-    },
-    [setState]
-  );
 
-  const sendQueryRef = useRef(sendQuery);
-  sendQueryRef.current = sendQuery;
+      if (dynamic) debounced(state);
+    },
+    [setState, dynamic]
+  );
 
   const renderBuilder = useCallback(
     (props: BuilderProps) => (
@@ -174,11 +183,13 @@ const BaseBuilder = (props: StyledProps) => {
             "query-builder " + (!alwaysShowActionButtons ? "qb-lite" : "")
           }>
           <Builder {...props} />
-          <button onClick={() => sendQueryRef.current()}>Search</button>
+          {!dynamic && (
+            <button onClick={() => sendQueryRef.current()}>Search</button>
+          )}
         </div>
       </div>
     ),
-    [alwaysShowActionButtons]
+    [alwaysShowActionButtons, dynamic]
   );
 
   const handleKeyDown = useCallback((event: any) => {

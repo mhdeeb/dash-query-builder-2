@@ -8,7 +8,6 @@ import { emptyTree } from "../fragments/utils";
  */
 const dash_query_builder = (props: Props) => {
   const { id } = props;
-
   return (
     <div id={id}>
       <Suspense fallback={<div>Loading...</div>}>
@@ -20,7 +19,9 @@ const dash_query_builder = (props: Props) => {
 
 dash_query_builder.defaultProps = {
   tree: emptyTree,
-  theme: "basic",
+  theme: "bootstrap",
+  dynamic: false,
+  debounceTime: 500,
   loadFormat: "tree",
   alwaysShowActionButtons: true,
 };

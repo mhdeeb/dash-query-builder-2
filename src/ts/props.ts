@@ -79,6 +79,14 @@ type FullProps = FormatProps & {
    */
   config?: Config;
   /**
+   * Toggles whether the tree is updated automatically or through a button.
+   */
+  dynamic: boolean;
+  /**
+   * debounce time for dynamic update.
+   */
+  debounceTime: number;
+  /**
    * The load format string. Changes the tree based on the corresponding prop change
    */
   loadFormat: loadFormatType;

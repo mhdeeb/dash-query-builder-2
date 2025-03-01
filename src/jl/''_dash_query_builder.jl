@@ -640,6 +640,8 @@ Those elements have the following types:
   - `tooltip` (String; optional)
   - `funcs` (Dict with Strings as keys and values of type Bool | Real | String | Dict | Array; optional)
   - `ctx` (Dict with Strings as keys and values of type Bool | Real | String | Dict | Array; required)
+- `debounceTime` (Real; optional): debounce time for dynamic update.
+- `dynamic` (Bool; optional): Toggles whether the tree is updated automatically or through a button.
 - `elasticSearchFormat` (optional): ElasticSearch query object. elasticSearchFormat has the following type: lists containing elements 'constructor', 'toString', 'toLocaleString', 'valueOf', 'hasOwnProperty', 'isPrototypeOf', 'propertyIsEnumerable'.
 Those elements have the following types:
   - `constructor` (optional): The initial value of Object.prototype.constructor is the standard built-in Object constructor.
@@ -844,7 +846,7 @@ Those elements have the following types:
 - `tree` (Bool | Real | String | Dict | Array; optional): The JSON representation of the tree
 """
 function ''_dash_query_builder(; kwargs...)
-        available_props = Symbol[:id, :alwaysShowActionButtons, :config, :elasticSearchFormat, :fields, :jsonLogicFormat, :loadFormat, :mongoDBFormat, :queryBuilderFormat, :queryString, :spelFormat, :sqlFormat, :theme, :tree]
+        available_props = Symbol[:id, :alwaysShowActionButtons, :config, :debounceTime, :dynamic, :elasticSearchFormat, :fields, :jsonLogicFormat, :loadFormat, :mongoDBFormat, :queryBuilderFormat, :queryString, :spelFormat, :sqlFormat, :theme, :tree]
         wild_props = Symbol[]
         return Component("''_dash_query_builder", "dash_query_builder", "dqb2", available_props, wild_props; kwargs...)
 end
