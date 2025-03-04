@@ -5,6 +5,7 @@ import {
   Config,
   ImmutableTree,
 } from "@react-awesome-query-builder/ui";
+import { SqlUtils } from "@react-awesome-query-builder/sql";
 import "@react-awesome-query-builder/ui/css/styles.css";
 import { isEmpty } from "ramda";
 const { loadTree, _loadFromJsonLogic, loadFromSpel, Validation } = Utils;
@@ -55,5 +56,18 @@ export const loadNewTree = (
       }
 
       return Validation.sanitizeTree(loadTree(loadItem), config).fixedTree;
+
+    case "sql":
+      const {
+        tree: sqlTree,
+        errors,
+        warnings,
+      } = SqlUtils.loadFromSql(loadItem as string, config);
+
+      if (errors.length) {
+        console.error("Import errors: ", errors);
+      }
+
+      return Validation.sanitizeTree(sqlTree, config).fixedTree;
   }
 };

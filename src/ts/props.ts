@@ -25,7 +25,7 @@ export type DashComponentProps = {
    */
   setProps: (props: Record<string, any>) => void;
 };
-export type loadFormatType = "jsonLogicFormat" | "spelFormat" | "tree";
+export type loadFormatType = "jsonLogicFormat" | "spelFormat" | "tree" | "sql";
 export type themeType =
   | "mui"
   | "material"

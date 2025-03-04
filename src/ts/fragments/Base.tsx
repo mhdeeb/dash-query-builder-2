@@ -16,6 +16,7 @@ import { StyledProps } from "./types";
 
 const { loadTree, Validation, getTree } = QbUtils;
 import { emptyTree, emptyImmutableTree, loadNewTree } from "./utils";
+import { SqlUtils } from "@react-awesome-query-builder/sql";
 
 type StateType = {
   immutableTree: ImmutableTree;
@@ -42,37 +43,19 @@ function makeProps(state: StateType, tree: JsonTree): FormatProps {
   };
 }
 
-// function useDidUpdateEffect(fn: Function, inputs: React.DependencyList) {
-//   const isMountingRef = useRef(true);
-
-//   // useEffect(() => {
-//   //   isMountingRef.current = true;
-//   // }, []);
-
-//   useEffect(() => {
-//     if (!isMountingRef.current) {
-//       return fn();
-//     } else {
-//       isMountingRef.current = false;
-//     }
-//   }, inputs);
-// }
-
 /**
  * Component description
  **/
 const BaseBuilder = (props: StyledProps) => {
   const {
     id,
-    tree,
     loadFormat,
     fields,
     config,
     dynamic,
     debounceTime,
     setProps,
-    spelFormat,
-    jsonLogicFormat,
+    sqlFormat,
     alwaysShowActionButtons,
     styleConfig,
   } = props;
@@ -91,27 +74,6 @@ const BaseBuilder = (props: StyledProps) => {
     return { immutableTree, config: completeConfig };
   });
 
-  // const previousTree = useRef<JsonTree | null>(null);
-  // const updateTree = useCallback(
-  //   (format: loadFormatType, formatValue: string | Object) => {
-  //     const newTree = loadNewTree(format, formatValue, state.config);
-
-  //     setState((prevState) => {
-  //       return { ...prevState, immutableTree: newTree };
-  //     });
-
-  //     setProps({ tree: getTree(newTree) });
-  //   },
-  //   [state]
-  // );
-
-  // useEffect(() => {
-  //   if (loadFormat === "spelFormat" && spelFormat) {
-  //     updateTree("spelFormat", spelFormat);
-  //   } else if (loadFormat === "jsonLogicFormat" && jsonLogicFormat) {
-  //     updateTree("jsonLogicFormat", jsonLogicFormat);
-  //   }
-  // }, []);
   const isFirstRun = useRef(true);
   useEffect(() => {
     if (isFirstRun.current) {
@@ -197,6 +159,33 @@ const BaseBuilder = (props: StyledProps) => {
 
     if (event.keyCode === ENTER_KEY) sendQueryRef.current();
   }, []);
+
+  useEffect(() => {
+    if (loadFormat === "sql" && sqlFormat) {
+      let immutableTree: ImmutableTree;
+
+      try {
+        const {
+          tree: immutableTree,
+          errors,
+          warnings,
+        } = SqlUtils.loadFromSql(sqlFormat, completeConfig);
+        if (errors.length) {
+          console.error("Import errors: ", errors);
+        }
+        setState({ immutableTree, config: completeConfig });
+        setProps({
+          ...makeProps(
+            { immutableTree, config: completeConfig },
+            getTree(immutableTree)
+          ),
+          loadFormat: "tree",
+        });
+      } catch (e) {
+        console.error("Error loading SQL format:", e);
+      }
+    }
+  }, [loadFormat, sqlFormat]);
 
   return (
     <div id={id} onKeyDown={handleKeyDown}>

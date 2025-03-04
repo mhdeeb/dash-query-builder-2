@@ -1,5 +1,5 @@
 import dash
-from dash import Input, Output, State, callback, callback_context, html, no_update
+from dash import Input, Output, html
 
 import dqb2
 
@@ -71,6 +71,7 @@ fields = {
 app.layout = html.Div(
     [
         html.Button("Toggle Dynamic", id="dynamic-toggle"),
+        html.Button("Load SQL", id="load-sql"),
         dqb2.dash_query_builder(
             id="dqb",
             fields=fields["fields"],
@@ -88,6 +89,16 @@ app.layout = html.Div(
 )
 def display_output(query):
     return html.Div(query)
+
+
+@app.callback(
+    Output("dqb", "loadFormat"),
+    Output("dqb", "sqlFormat"),
+    Input("load-sql", "n_clicks"),
+    prevent_initial_call=True,
+)
+def load_sql(n_clicks):
+    return "sql", "qty > 30"
 
 
 @app.callback(

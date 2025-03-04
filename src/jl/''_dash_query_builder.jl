@@ -814,7 +814,7 @@ Those elements have the following types:
 @,param,v, ,Another object whose prototype chain is to be checked.
   - `propertyIsEnumerable` (optional): Determines whether a specified property is enumerable.
 @,param,v, ,A property name.
-- `loadFormat` (a value equal to: 'tree', 'jsonLogicFormat', 'spelFormat'; optional): The load format string. Changes the tree based on the corresponding prop change
+- `loadFormat` (a value equal to: 'tree', 'jsonLogicFormat', 'spelFormat', 'sql'; optional): The load format string. Changes the tree based on the corresponding prop change
 - `mongoDBFormat` (optional): MongoDB query object. mongoDBFormat has the following type: lists containing elements 'constructor', 'toString', 'toLocaleString', 'valueOf', 'hasOwnProperty', 'isPrototypeOf', 'propertyIsEnumerable'.
 Those elements have the following types:
   - `constructor` (optional): The initial value of Object.prototype.constructor is the standard built-in Object constructor.

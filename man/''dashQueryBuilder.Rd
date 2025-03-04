@@ -833,7 +833,7 @@ those elements have the following types:
   - propertyisenumerable (optional): determines whether a specified property is enumerable.
 @,param,v, ,a property name.. JSONLogic object}
 
-\item{loadFormat}{A value equal to: 'tree', 'jsonlogicformat', 'spelformat'. The load format string. Changes the tree based on the corresponding prop change}
+\item{loadFormat}{A value equal to: 'tree', 'jsonlogicformat', 'spelformat', 'sql'. The load format string. Changes the tree based on the corresponding prop change}
 
 \item{mongoDBFormat}{Lists containing elements 'constructor', 'tostring', 'tolocalestring', 'valueof', 'hasownproperty', 'isprototypeof', 'propertyisenumerable'.
 those elements have the following types:
