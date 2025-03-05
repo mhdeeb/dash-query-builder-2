@@ -122,19 +122,20 @@ const BaseBuilder = (props: StyledProps) => {
   const sendQueryRef = useRef(sendQuery);
   sendQueryRef.current = sendQuery;
 
-  const debounced = useDebouncedCallback((state) => {
-    sendQueryRef.current();
-  }, debounceTime);
+  const debouncedSendQuery = useDebouncedCallback(
+    () => sendQueryRef.current(),
+    debounceTime
+  );
 
   const onChange = useCallback(
     (immutableTree: ImmutableTree, config: Config) => {
-      setState((prevState) => {
-        return { ...prevState, immutableTree, config };
-      });
+      setState((prevState) => ({ ...prevState, immutableTree, config }));
 
-      if (dynamic) debounced(state);
+      if (dynamic) {
+        debouncedSendQuery();
+      }
     },
-    [setState, dynamic]
+    [dynamic, debouncedSendQuery]
   );
 
   const renderBuilder = useCallback(
@@ -162,17 +163,22 @@ const BaseBuilder = (props: StyledProps) => {
 
   useEffect(() => {
     if (loadFormat === "sql" && sqlFormat) {
-      let immutableTree: ImmutableTree;
-
       try {
         const {
           tree: immutableTree,
           errors,
           warnings,
         } = SqlUtils.loadFromSql(sqlFormat, completeConfig);
+
         if (errors.length) {
           console.error("Import errors: ", errors);
+          return; // Don't proceed if there are errors
         }
+        if (warnings.length) {
+          console.warn("Import warnings: ", warnings);
+        }
+
+        // Update state and props in one go
         setState({ immutableTree, config: completeConfig });
         setProps({
           ...makeProps(

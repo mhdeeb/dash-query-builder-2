@@ -98,7 +98,10 @@ def display_output(query):
     prevent_initial_call=True,
 )
 def load_sql(n_clicks):
-    return "sql", "qty > 30"
+    return (
+        "sql",
+        "NOT qty > 30 AND price > 50 AND color = 'yellow' OR is_promotion = true",
+    )
 
 
 @app.callback(

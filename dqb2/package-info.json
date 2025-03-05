@@ -1,6 +1,6 @@
 {
   "name": "dqb2",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "A fork from dash-query-builder",
   "main": "dqb2/dqb2.js",
   "repository": {
@@ -20,7 +20,7 @@
     "bump": "python scripts/make_version.py",
     "clean": "rm -rf dist && rm -rf build",
     "pack": "npm run bump && npm run clean && npm run build",
-    "publish": "twine upload dist/*",
+    "publish": "twine upload dist/* && npm publish",
     "watch": "npm run build:js::dev -- --watch"
   },
   "devDependencies": {
