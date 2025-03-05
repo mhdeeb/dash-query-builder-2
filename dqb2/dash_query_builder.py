@@ -1624,7 +1624,7 @@ Keyword arguments:
         Determines whether a specified property is enumerable.
         @,param,v, ,A property name.
 
-- loadFormat (a value equal to: 'tree', 'jsonLogicFormat', 'spelFormat', 'sql'; default 'tree'):
+- loadFormat (a value equal to: 'tree', 'jsonLogicFormat', 'spelFormat'; default 'tree'):
     The load format string. Changes the tree based on the
     corresponding prop change.
 
