@@ -58,9 +58,6 @@ function makeProps(state: StateType, tree: JsonTree): FormatProps {
 //   }, inputs);
 // }
 
-/**
- * Component description
- **/
 const BaseBuilder = (props: StyledProps) => {
   const {
     id,
@@ -112,6 +109,24 @@ const BaseBuilder = (props: StyledProps) => {
   //     updateTree("jsonLogicFormat", jsonLogicFormat);
   //   }
   // }, []);
+
+  useEffect(() => {
+    if (loadFormat === "jsonLogicFormat" && jsonLogicFormat !== undefined) {
+      let newTree = loadNewTree(
+        "jsonLogicFormat",
+        jsonLogicFormat,
+        state.config
+      );
+
+      setState((prevState) => ({
+        ...prevState,
+        immutableTree: newTree,
+      }));
+
+      setProps({ tree: getTree(newTree) });
+    }
+  }, [jsonLogicFormat]);
+
   const isFirstRun = useRef(true);
   useEffect(() => {
     if (isFirstRun.current) {
