@@ -20,7 +20,7 @@ const dash_query_builder = (props: Props) => {
 dash_query_builder.defaultProps = {
   tree: emptyTree,
   theme: "bootstrap",
-  dynamic: false,
+  dynamic: true,
   debounceTime: 500,
   loadFormat: "tree",
   alwaysShowActionButtons: true,

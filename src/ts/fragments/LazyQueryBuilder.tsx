@@ -11,9 +11,9 @@ const LazyBootstrap = React.lazy(
 // const LazyAntd = React.lazy(
 //   () => import(/* webpackChunkName: "antd" */ "./Antd")
 // );
-const LazyBasic = React.lazy(
-  () => import(/* webpackChunkName: "basic" */ "./Basic")
-);
+// const LazyBasic = React.lazy(
+//   () => import(/* webpackChunkName: "basic" */ "./Basic")
+// );
 
 const LazyQueryBuilder = (props: Props) => {
   switch (props.theme) {
@@ -25,8 +25,8 @@ const LazyQueryBuilder = (props: Props) => {
     //   return <LazyAntd {...props} />;
     case "bootstrap":
       return <LazyBootstrap {...props} />;
-    case "basic":
-      return <LazyBasic {...props} />;
+    // case "basic":
+    //   return <LazyBasic {...props} />;
   }
 };
 

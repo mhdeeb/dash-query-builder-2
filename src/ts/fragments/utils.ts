@@ -25,28 +25,25 @@ export const loadNewTree = (
   loadItem: string | Object,
   config: Config
 ): ImmutableTree => {
-  let error: string[], tree: ImmutableTree;
   switch (load_format) {
     case "spelFormat":
-      if (typeof loadItem !== "string") {
-        return loadTree(emptyTree);
-      } else {
-        [tree, error] = loadFromSpel(loadItem, config);
-      }
+      if (typeof loadItem !== "string") return loadTree(emptyTree);
+
+      const [tree, error] = loadFromSpel(loadItem, config);
 
       if (error.length > 0) {
         console.log("There were errors loading the tree:", error);
         throw new Error("There were errors loading the tree: " + error);
       }
-      return tree;
+      return tree!;
     case "jsonLogicFormat":
       if (typeof loadItem !== "object") {
         throw new Error("JsonLogic format requires object input");
       } else if (isEmpty(loadItem)) {
         return loadTree(emptyTree);
       } else {
-        [tree, error] = _loadFromJsonLogic(loadItem, config);
-        return tree;
+        const [tree, error] = _loadFromJsonLogic(loadItem, config);
+        return tree!;
       }
 
     case "tree":

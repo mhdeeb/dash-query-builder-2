@@ -1,7 +1,7 @@
-import { useState, useRef, useCallback, useEffect, useMemo } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import React from "react";
 import { useDebouncedCallback } from "use-debounce";
-import { FormatProps, loadFormatType } from "../props";
+import { FormatProps } from "../props";
 import {
   Utils as QbUtils,
   Query,
@@ -14,7 +14,7 @@ import {
 import { mergeAll } from "ramda";
 import { StyledProps } from "./types";
 
-const { loadTree, Validation, getTree } = QbUtils;
+const { Validation, getTree } = QbUtils;
 import { emptyTree, emptyImmutableTree, loadNewTree } from "./utils";
 
 type StateType = {
@@ -42,39 +42,21 @@ function makeProps(state: StateType, tree: JsonTree): FormatProps {
   };
 }
 
-// function useDidUpdateEffect(fn: Function, inputs: React.DependencyList) {
-//   const isMountingRef = useRef(true);
-
-//   // useEffect(() => {
-//   //   isMountingRef.current = true;
-//   // }, []);
-
-//   useEffect(() => {
-//     if (!isMountingRef.current) {
-//       return fn();
-//     } else {
-//       isMountingRef.current = false;
-//     }
-//   }, inputs);
-// }
-
 const BaseBuilder = (props: StyledProps) => {
   const {
     id,
-    tree,
     loadFormat,
     fields,
     config,
     dynamic,
     debounceTime,
     setProps,
-    spelFormat,
     jsonLogicFormat,
     alwaysShowActionButtons,
     styleConfig,
   } = props;
 
-  const initialConfig: Config = mergeAll([styleConfig, config]);
+  const initialConfig: Config = mergeAll([styleConfig, config])!;
   const completeConfig = { ...initialConfig, fields };
   const initialLoadItem = props[loadFormat] || emptyTree;
 
@@ -88,27 +70,7 @@ const BaseBuilder = (props: StyledProps) => {
     return { immutableTree, config: completeConfig };
   });
 
-  // const previousTree = useRef<JsonTree | null>(null);
-  // const updateTree = useCallback(
-  //   (format: loadFormatType, formatValue: string | Object) => {
-  //     const newTree = loadNewTree(format, formatValue, state.config);
-
-  //     setState((prevState) => {
-  //       return { ...prevState, immutableTree: newTree };
-  //     });
-
-  //     setProps({ tree: getTree(newTree) });
-  //   },
-  //   [state]
-  // );
-
-  // useEffect(() => {
-  //   if (loadFormat === "spelFormat" && spelFormat) {
-  //     updateTree("spelFormat", spelFormat);
-  //   } else if (loadFormat === "jsonLogicFormat" && jsonLogicFormat) {
-  //     updateTree("jsonLogicFormat", jsonLogicFormat);
-  //   }
-  // }, []);
+  const [instant, setInstant] = useState(false);
 
   useEffect(() => {
     if (loadFormat === "jsonLogicFormat" && jsonLogicFormat !== undefined) {
@@ -123,7 +85,7 @@ const BaseBuilder = (props: StyledProps) => {
         immutableTree: newTree,
       }));
 
-      setProps({ tree: getTree(newTree) });
+      setInstant(true);
     }
   }, [jsonLogicFormat]);
 
@@ -183,13 +145,21 @@ const BaseBuilder = (props: StyledProps) => {
   const onChange = useCallback(
     (immutableTree: ImmutableTree, config: Config) => {
       setState((prevState) => ({ ...prevState, immutableTree, config }));
-
-      if (dynamic) {
-        debouncedSendQuery();
-      }
     },
-    [dynamic, debouncedSendQuery]
+    []
   );
+
+  useEffect(() => {
+    if (!dynamic) return;
+
+    if (instant) {
+      debouncedSendQuery.cancel();
+      sendQueryRef.current();
+      setInstant(false);
+    } else {
+      debouncedSendQuery();
+    }
+  }, [dynamic, instant, state.immutableTree]);
 
   const renderBuilder = useCallback(
     (props: BuilderProps) => (

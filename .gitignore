@@ -278,3 +278,11 @@ GitHub.sublime-settings
 # Julia manifest file names
 Manifest.toml
 JuliaManifest.toml
+
+build/
+dist/
+deps/
+dqb2.egg-info/
+inst/
+man/
+R/

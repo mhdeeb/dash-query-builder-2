@@ -4,6 +4,10 @@
 /inst
 /deps
 /build
+/dist
+/dqb2.egg-info
+/man
+/R
 
 # testing
 /coverage
