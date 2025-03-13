@@ -49,6 +49,7 @@ const BaseBuilder = (props: StyledProps) => {
     fields,
     config,
     dynamic,
+    clear,
     debounceTime,
     setProps,
     jsonLogicFormat,
@@ -160,6 +161,15 @@ const BaseBuilder = (props: StyledProps) => {
       debouncedSendQuery();
     }
   }, [dynamic, instant, state.immutableTree]);
+
+  useEffect(() => {
+    if (clear) {
+      setState((prevState) => ({
+        ...prevState,
+        immutableTree: emptyImmutableTree,
+      }));
+    }
+  }, [clear]);
 
   const renderBuilder = useCallback(
     (props: BuilderProps) => (

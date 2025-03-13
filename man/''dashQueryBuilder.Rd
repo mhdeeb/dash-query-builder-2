@@ -10,18 +10,20 @@ The Dash Query Builder component
 }
 
 \usage{
-''dashQueryBuilder(id=NULL, alwaysShowActionButtons=NULL, config=NULL,
-debounceTime=NULL, dynamic=NULL, elasticSearchFormat=NULL,
-fields=NULL, jsonLogicFormat=NULL, loadFormat=NULL,
-mongoDBFormat=NULL, queryBuilderFormat=NULL,
-queryString=NULL, spelFormat=NULL, sqlFormat=NULL,
-theme=NULL, tree=NULL)
+''dashQueryBuilder(id=NULL, alwaysShowActionButtons=NULL, clear=NULL,
+config=NULL, debounceTime=NULL, dynamic=NULL,
+elasticSearchFormat=NULL, fields=NULL, jsonLogicFormat=NULL,
+loadFormat=NULL, mongoDBFormat=NULL,
+queryBuilderFormat=NULL, queryString=NULL, spelFormat=NULL,
+sqlFormat=NULL, theme=NULL, tree=NULL)
 }
 
 \arguments{
 \item{id}{Character. Unique ID to identify this component in Dash callbacks.}
 
 \item{alwaysShowActionButtons}{Logical. Whether to show action buttons all the time or just on hover}
+
+\item{clear}{Logical. Whether to clear the tree}
 
 \item{config}{Logical | numeric | character | named list | unnamed list. The config object. See the [Config](https://github.com/ukrbublik/react-awesome-query-builder/blob/master/CONFIG.adoc docs).}
 

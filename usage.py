@@ -74,6 +74,7 @@ fields = {
 app.layout = html.Div(
     [
         html.Button("Toggle Dynamic", id="dynamic-toggle"),
+        html.Button("Clear", id="clear-toggle"),
         html.Button("Load Json", id="load-json"),
         html.Button("Save Json", id="save-json"),
         dqb2.dash_query_builder(
@@ -136,6 +137,14 @@ def load_sql(n_clicks, json_output):
 def toggle_dyanmic(n_clicks):
     return n_clicks % 2 == 1
 
+
+@app.callback(
+    Output("dqb", "clear"),
+    Input("clear-toggle", "n_clicks"),
+    prevent_initial_call=True,
+)
+def toggle_clear(n_clicks):
+    return True
 
 if __name__ == "__main__":
     app.run_server(debug=True)

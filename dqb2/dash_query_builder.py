@@ -15,6 +15,9 @@ Keyword arguments:
 - alwaysShowActionButtons (boolean; default True):
     Whether to show action buttons all the time or just on hover.
 
+- clear (boolean; default False):
+    Whether to clear the tree.
+
 - config (boolean | number | string | dict | list; optional):
     The config object. See the
     [Config](https://github.com/ukrbublik/react-awesome-query-builder/blob/master/CONFIG.adoc
@@ -179,10 +182,10 @@ Keyword arguments:
     _namespace = 'dqb2'
     _type = 'dash_query_builder'
     @_explicitize_args
-    def __init__(self, tree=Component.UNDEFINED, sqlFormat=Component.UNDEFINED, jsonLogicFormat=Component.UNDEFINED, queryBuilderFormat=Component.UNDEFINED, mongoDBFormat=Component.UNDEFINED, queryString=Component.UNDEFINED, elasticSearchFormat=Component.UNDEFINED, spelFormat=Component.UNDEFINED, fields=Component.REQUIRED, config=Component.UNDEFINED, dynamic=Component.UNDEFINED, debounceTime=Component.UNDEFINED, loadFormat=Component.UNDEFINED, alwaysShowActionButtons=Component.UNDEFINED, theme=Component.UNDEFINED, id=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'alwaysShowActionButtons', 'config', 'debounceTime', 'dynamic', 'elasticSearchFormat', 'fields', 'jsonLogicFormat', 'loadFormat', 'mongoDBFormat', 'queryBuilderFormat', 'queryString', 'spelFormat', 'sqlFormat', 'theme', 'tree']
+    def __init__(self, tree=Component.UNDEFINED, sqlFormat=Component.UNDEFINED, jsonLogicFormat=Component.UNDEFINED, queryBuilderFormat=Component.UNDEFINED, mongoDBFormat=Component.UNDEFINED, queryString=Component.UNDEFINED, elasticSearchFormat=Component.UNDEFINED, spelFormat=Component.UNDEFINED, fields=Component.REQUIRED, config=Component.UNDEFINED, dynamic=Component.UNDEFINED, clear=Component.UNDEFINED, debounceTime=Component.UNDEFINED, loadFormat=Component.UNDEFINED, alwaysShowActionButtons=Component.UNDEFINED, theme=Component.UNDEFINED, id=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'alwaysShowActionButtons', 'clear', 'config', 'debounceTime', 'dynamic', 'elasticSearchFormat', 'fields', 'jsonLogicFormat', 'loadFormat', 'mongoDBFormat', 'queryBuilderFormat', 'queryString', 'spelFormat', 'sqlFormat', 'theme', 'tree']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'alwaysShowActionButtons', 'config', 'debounceTime', 'dynamic', 'elasticSearchFormat', 'fields', 'jsonLogicFormat', 'loadFormat', 'mongoDBFormat', 'queryBuilderFormat', 'queryString', 'spelFormat', 'sqlFormat', 'theme', 'tree']
+        self.available_properties = ['id', 'alwaysShowActionButtons', 'clear', 'config', 'debounceTime', 'dynamic', 'elasticSearchFormat', 'fields', 'jsonLogicFormat', 'loadFormat', 'mongoDBFormat', 'queryBuilderFormat', 'queryString', 'spelFormat', 'sqlFormat', 'theme', 'tree']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

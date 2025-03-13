@@ -286,3 +286,4 @@ dqb2.egg-info/
 inst/
 man/
 R/
+uv.lock

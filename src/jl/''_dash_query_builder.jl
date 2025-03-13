@@ -10,6 +10,7 @@ The Dash Query Builder component
 Keyword arguments:
 - `id` (String; optional): Unique ID to identify this component in Dash callbacks.
 - `alwaysShowActionButtons` (Bool; optional): Whether to show action buttons all the time or just on hover
+- `clear` (Bool; optional): Whether to clear the tree
 - `config` (Bool | Real | String | Dict | Array; optional): The config object. See the [Config](https://github.com/ukrbublik/react-awesome-query-builder/blob/master/CONFIG.adoc docs).
 - `debounceTime` (Real; optional): debounce time for dynamic update.
 - `dynamic` (Bool; optional): Toggles whether the tree is updated automatically or through a button.
@@ -71,7 +72,7 @@ Those elements have the following types:
 - `tree` (Bool | Real | String | Dict | Array; optional): The JSON representation of the tree
 """
 function ''_dash_query_builder(; kwargs...)
-        available_props = Symbol[:id, :alwaysShowActionButtons, :config, :debounceTime, :dynamic, :elasticSearchFormat, :fields, :jsonLogicFormat, :loadFormat, :mongoDBFormat, :queryBuilderFormat, :queryString, :spelFormat, :sqlFormat, :theme, :tree]
+        available_props = Symbol[:id, :alwaysShowActionButtons, :clear, :config, :debounceTime, :dynamic, :elasticSearchFormat, :fields, :jsonLogicFormat, :loadFormat, :mongoDBFormat, :queryBuilderFormat, :queryString, :spelFormat, :sqlFormat, :theme, :tree]
         wild_props = Symbol[]
         return Component("''_dash_query_builder", "dash_query_builder", "dqb2", available_props, wild_props; kwargs...)
 end

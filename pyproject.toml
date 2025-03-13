@@ -9,6 +9,12 @@ readme = "README.md"
 requires-python = ">=3.8"
 classifiers = ["Programming Language :: Python :: 3"]
 license = { text = "MIT" }
+dependencies = [
+    "build>=1.2.2.post1",
+    "dash[dev]>=2.5.1",
+    "twine>=6.1.0",
+    "wheel>=0.45.1",
+]
 
 [project.urls]
 Homepage = "https://github.com/mhdeeb/dash-query-builder-2"

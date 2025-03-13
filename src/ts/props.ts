@@ -83,6 +83,10 @@ type FullProps = FormatProps & {
    */
   dynamic: boolean;
   /**
+   * Whether to clear the tree
+   */
+  clear: boolean;
+  /**
    * debounce time for dynamic update.
    */
   debounceTime: number;

@@ -21,6 +21,7 @@ dash_query_builder.defaultProps = {
   tree: emptyTree,
   theme: "bootstrap",
   dynamic: true,
+  clear: false,
   debounceTime: 500,
   loadFormat: "tree",
   alwaysShowActionButtons: true,
