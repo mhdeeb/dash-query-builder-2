@@ -1,5 +1,4 @@
-import { useState, useRef, useCallback, useEffect } from "react";
-import React from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { FormatProps } from "../props";
 import {
@@ -35,10 +34,6 @@ function makeProps(state: StateType, tree: JsonTree): FormatProps {
       state.config
     ),
     spelFormat: QbUtils.spelFormat(state.immutableTree, state.config),
-    queryBuilderFormat: QbUtils.queryBuilderFormat(
-      state.immutableTree,
-      state.config
-    ),
   };
 }
 
@@ -82,7 +77,7 @@ const BaseBuilder = (props: StyledProps) => {
       );
 
       setState((prevState) => ({
-        ...prevState,
+        config: { ...prevState.config, loadFormat: "tree" },
         immutableTree: newTree,
       }));
 
@@ -165,7 +160,7 @@ const BaseBuilder = (props: StyledProps) => {
   useEffect(() => {
     if (clear) {
       setState((prevState) => ({
-        ...prevState,
+        config: { ...prevState.config, clear: false },
         immutableTree: emptyImmutableTree,
       }));
     }
