@@ -53,18 +53,6 @@ Those elements have the following types:
 @,param,v, ,Another object whose prototype chain is to be checked.
   - `propertyIsEnumerable` (optional): Determines whether a specified property is enumerable.
 @,param,v, ,A property name.
-- `queryBuilderFormat` (optional): Query Builder object. queryBuilderFormat has the following type: lists containing elements 'constructor', 'toString', 'toLocaleString', 'valueOf', 'hasOwnProperty', 'isPrototypeOf', 'propertyIsEnumerable'.
-Those elements have the following types:
-  - `constructor` (optional): The initial value of Object.prototype.constructor is the standard built-in Object constructor.
-  - `toString` (optional): Returns a string representation of an object.
-  - `toLocaleString` (optional): Returns a date converted to a string using the current locale.
-  - `valueOf` (optional): Returns the primitive value of the specified object.
-  - `hasOwnProperty` (optional): Determines whether an object has a property with the specified name.
-@,param,v, ,A property name.
-  - `isPrototypeOf` (optional): Determines whether an object exists in another object's prototype chain.
-@,param,v, ,Another object whose prototype chain is to be checked.
-  - `propertyIsEnumerable` (optional): Determines whether a specified property is enumerable.
-@,param,v, ,A property name.
 - `queryString` (String; optional): Query string
 - `spelFormat` (String; optional): SPEL query string
 - `sqlFormat` (String; optional): The WHERE clause in SQL
@@ -72,7 +60,7 @@ Those elements have the following types:
 - `tree` (Bool | Real | String | Dict | Array; optional): The JSON representation of the tree
 """
 function ''_dash_query_builder(; kwargs...)
-        available_props = Symbol[:id, :alwaysShowActionButtons, :clear, :config, :debounceTime, :dynamic, :elasticSearchFormat, :fields, :jsonLogicFormat, :loadFormat, :mongoDBFormat, :queryBuilderFormat, :queryString, :spelFormat, :sqlFormat, :theme, :tree]
+        available_props = Symbol[:id, :alwaysShowActionButtons, :clear, :config, :debounceTime, :dynamic, :elasticSearchFormat, :fields, :jsonLogicFormat, :loadFormat, :mongoDBFormat, :queryString, :spelFormat, :sqlFormat, :theme, :tree]
         wild_props = Symbol[]
         return Component("''_dash_query_builder", "dash_query_builder", "dqb2", available_props, wild_props; kwargs...)
 end

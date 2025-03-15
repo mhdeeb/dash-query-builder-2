@@ -1,5 +1,4 @@
-import { useState, useRef, useCallback, useEffect } from "react";
-import React from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { FormatProps } from "../props";
 import {
@@ -35,10 +34,6 @@ function makeProps(state: StateType, tree: JsonTree): FormatProps {
       state.config
     ),
     spelFormat: QbUtils.spelFormat(state.immutableTree, state.config),
-    queryBuilderFormat: QbUtils.queryBuilderFormat(
-      state.immutableTree,
-      state.config
-    ),
   };
 }
 
@@ -86,9 +81,11 @@ const BaseBuilder = (props: StyledProps) => {
         immutableTree: newTree,
       }));
 
+      setProps({ loadFormat: "tree" });
+
       setInstant(true);
     }
-  }, [jsonLogicFormat]);
+  }, [loadFormat]);
 
   const isFirstRun = useRef(true);
   useEffect(() => {
@@ -168,6 +165,8 @@ const BaseBuilder = (props: StyledProps) => {
         ...prevState,
         immutableTree: emptyImmutableTree,
       }));
+
+      setProps({ clear: false });
     }
   }, [clear]);
 

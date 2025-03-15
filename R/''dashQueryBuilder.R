@@ -1,9 +1,9 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 #' @export
-''dashQueryBuilder <- function(id=NULL, alwaysShowActionButtons=NULL, clear=NULL, config=NULL, debounceTime=NULL, dynamic=NULL, elasticSearchFormat=NULL, fields=NULL, jsonLogicFormat=NULL, loadFormat=NULL, mongoDBFormat=NULL, queryBuilderFormat=NULL, queryString=NULL, spelFormat=NULL, sqlFormat=NULL, theme=NULL, tree=NULL) {
+''dashQueryBuilder <- function(id=NULL, alwaysShowActionButtons=NULL, clear=NULL, config=NULL, debounceTime=NULL, dynamic=NULL, elasticSearchFormat=NULL, fields=NULL, jsonLogicFormat=NULL, loadFormat=NULL, mongoDBFormat=NULL, queryString=NULL, spelFormat=NULL, sqlFormat=NULL, theme=NULL, tree=NULL) {
     
-    props <- list(id=id, alwaysShowActionButtons=alwaysShowActionButtons, clear=clear, config=config, debounceTime=debounceTime, dynamic=dynamic, elasticSearchFormat=elasticSearchFormat, fields=fields, jsonLogicFormat=jsonLogicFormat, loadFormat=loadFormat, mongoDBFormat=mongoDBFormat, queryBuilderFormat=queryBuilderFormat, queryString=queryString, spelFormat=spelFormat, sqlFormat=sqlFormat, theme=theme, tree=tree)
+    props <- list(id=id, alwaysShowActionButtons=alwaysShowActionButtons, clear=clear, config=config, debounceTime=debounceTime, dynamic=dynamic, elasticSearchFormat=elasticSearchFormat, fields=fields, jsonLogicFormat=jsonLogicFormat, loadFormat=loadFormat, mongoDBFormat=mongoDBFormat, queryString=queryString, spelFormat=spelFormat, sqlFormat=sqlFormat, theme=theme, tree=tree)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -11,7 +11,7 @@
         props = props,
         type = 'dash_query_builder',
         namespace = 'dqb2',
-        propNames = c('id', 'alwaysShowActionButtons', 'clear', 'config', 'debounceTime', 'dynamic', 'elasticSearchFormat', 'fields', 'jsonLogicFormat', 'loadFormat', 'mongoDBFormat', 'queryBuilderFormat', 'queryString', 'spelFormat', 'sqlFormat', 'theme', 'tree'),
+        propNames = c('id', 'alwaysShowActionButtons', 'clear', 'config', 'debounceTime', 'dynamic', 'elasticSearchFormat', 'fields', 'jsonLogicFormat', 'loadFormat', 'mongoDBFormat', 'queryString', 'spelFormat', 'sqlFormat', 'theme', 'tree'),
         package = 'dqb2'
         )
 

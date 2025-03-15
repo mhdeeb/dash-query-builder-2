@@ -48,10 +48,6 @@ export type FormatProps = {
    */
   jsonLogicFormat?: JsonLogicTree;
   /**
-   * Query Builder object
-   */
-  queryBuilderFormat?: Object;
-  /**
    * MongoDB query object
    */
   mongoDBFormat?: Object;

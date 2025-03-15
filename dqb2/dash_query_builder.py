@@ -132,37 +132,6 @@ Keyword arguments:
         Determines whether a specified property is enumerable.
         @,param,v, ,A property name.
 
-- queryBuilderFormat (dict; optional):
-    Query Builder object.
-
-    `queryBuilderFormat` is a dict with keys:
-
-    - constructor (optional):
-        The initial value of Object.prototype.constructor is the
-        standard built-in Object constructor.
-
-    - toString (optional):
-        Returns a string representation of an object.
-
-    - toLocaleString (optional):
-        Returns a date converted to a string using the current locale.
-
-    - valueOf (optional):
-        Returns the primitive value of the specified object.
-
-    - hasOwnProperty (optional):
-        Determines whether an object has a property with the specified
-        name. @,param,v, ,A property name.
-
-    - isPrototypeOf (optional):
-        Determines whether an object exists in another object's
-        prototype chain. @,param,v, ,Another object whose prototype
-        chain is to be checked.
-
-    - propertyIsEnumerable (optional):
-        Determines whether a specified property is enumerable.
-        @,param,v, ,A property name.
-
 - queryString (string; optional):
     Query string.
 
@@ -182,10 +151,10 @@ Keyword arguments:
     _namespace = 'dqb2'
     _type = 'dash_query_builder'
     @_explicitize_args
-    def __init__(self, tree=Component.UNDEFINED, sqlFormat=Component.UNDEFINED, jsonLogicFormat=Component.UNDEFINED, queryBuilderFormat=Component.UNDEFINED, mongoDBFormat=Component.UNDEFINED, queryString=Component.UNDEFINED, elasticSearchFormat=Component.UNDEFINED, spelFormat=Component.UNDEFINED, fields=Component.REQUIRED, config=Component.UNDEFINED, dynamic=Component.UNDEFINED, clear=Component.UNDEFINED, debounceTime=Component.UNDEFINED, loadFormat=Component.UNDEFINED, alwaysShowActionButtons=Component.UNDEFINED, theme=Component.UNDEFINED, id=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'alwaysShowActionButtons', 'clear', 'config', 'debounceTime', 'dynamic', 'elasticSearchFormat', 'fields', 'jsonLogicFormat', 'loadFormat', 'mongoDBFormat', 'queryBuilderFormat', 'queryString', 'spelFormat', 'sqlFormat', 'theme', 'tree']
+    def __init__(self, tree=Component.UNDEFINED, sqlFormat=Component.UNDEFINED, jsonLogicFormat=Component.UNDEFINED, mongoDBFormat=Component.UNDEFINED, queryString=Component.UNDEFINED, elasticSearchFormat=Component.UNDEFINED, spelFormat=Component.UNDEFINED, fields=Component.REQUIRED, config=Component.UNDEFINED, dynamic=Component.UNDEFINED, clear=Component.UNDEFINED, debounceTime=Component.UNDEFINED, loadFormat=Component.UNDEFINED, alwaysShowActionButtons=Component.UNDEFINED, theme=Component.UNDEFINED, id=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'alwaysShowActionButtons', 'clear', 'config', 'debounceTime', 'dynamic', 'elasticSearchFormat', 'fields', 'jsonLogicFormat', 'loadFormat', 'mongoDBFormat', 'queryString', 'spelFormat', 'sqlFormat', 'theme', 'tree']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'alwaysShowActionButtons', 'clear', 'config', 'debounceTime', 'dynamic', 'elasticSearchFormat', 'fields', 'jsonLogicFormat', 'loadFormat', 'mongoDBFormat', 'queryBuilderFormat', 'queryString', 'spelFormat', 'sqlFormat', 'theme', 'tree']
+        self.available_properties = ['id', 'alwaysShowActionButtons', 'clear', 'config', 'debounceTime', 'dynamic', 'elasticSearchFormat', 'fields', 'jsonLogicFormat', 'loadFormat', 'mongoDBFormat', 'queryString', 'spelFormat', 'sqlFormat', 'theme', 'tree']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

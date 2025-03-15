@@ -118,7 +118,7 @@ def display_json_output(query, n_clicks):
     State("json-output", "children"),
     prevent_initial_call=True,
 )
-def load_sql(n_clicks, json_output):
+def load_json(n_clicks, json_output):
     if json_output:
         print(json_output)
         return (
@@ -135,7 +135,7 @@ def load_sql(n_clicks, json_output):
     prevent_initial_call=True,
 )
 def toggle_dyanmic(n_clicks):
-    return n_clicks % 2 == 1
+    return not n_clicks % 2
 
 
 @app.callback(
