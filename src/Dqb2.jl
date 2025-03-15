@@ -3,7 +3,7 @@ module Dqb2
 using Dash
 
 const resources_path = realpath(joinpath( @__DIR__, "..", "deps"))
-const version = "1.0.17"
+const version = "1.0.18"
 
 include("jl/''_dash_query_builder.jl")
 
@@ -16,7 +16,7 @@ function __init__()
             [
                 DashBase.Resource(
     relative_package_path = "dqb2.js",
-    external_url = "https://cdn.jsdelivr.net/npm/dqb2@1.0.17/dqb2/dqb2.js",
+    external_url = "https://cdn.jsdelivr.net/npm/dqb2@1.0.18/dqb2/dqb2.js",
     dynamic = nothing,
     async = nothing,
     type = :js

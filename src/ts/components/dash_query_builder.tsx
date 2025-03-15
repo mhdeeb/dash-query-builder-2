@@ -1,5 +1,4 @@
-import { Suspense } from "react";
-import React from "react";
+import React, { Suspense } from "react";
 import { Props } from "../props";
 import LazyQueryBuilder from "../fragments/LazyQueryBuilder";
 import { emptyTree } from "../fragments/utils";
