@@ -4,8 +4,8 @@ import {
   JsonTree,
   Config,
   ImmutableTree,
-} from "@react-awesome-query-builder/bootstrap";
-import "@react-awesome-query-builder/bootstrap/css/styles.css";
+} from "@react-awesome-query-builder/mui";
+import "@react-awesome-query-builder/mui/css/styles.css";
 import { isEmpty } from "ramda";
 const { loadTree, _loadFromJsonLogic, loadFromSpel, Validation } = Utils;
 

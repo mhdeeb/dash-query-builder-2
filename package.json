@@ -43,7 +43,7 @@
   "author": "Mohamed El-Deeb <s-mohamed.eldeeb@zewailcity.edu.eg>",
   "license": "MIT",
   "dependencies": {
-    "@react-awesome-query-builder/bootstrap": "^6.6.13",
+    "@react-awesome-query-builder/mui": "^6.6.13",
     "use-debounce": "^10.0.4"
   }
 }
