@@ -1,6 +1,6 @@
 {
   "name": "dqb2",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "A fork from dash-query-builder",
   "main": "dqb2/dqb2.js",
   "repository": {
@@ -44,7 +44,6 @@
   "license": "MIT",
   "dependencies": {
     "@react-awesome-query-builder/bootstrap": "^6.6.13",
-    "@react-awesome-query-builder/ui": "^6.6.13",
     "use-debounce": "^10.0.4"
   }
 }

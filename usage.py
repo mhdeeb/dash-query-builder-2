@@ -81,7 +81,6 @@ app.layout = html.Div(
             id="dqb",
             dynamic=True,
             fields=fields["fields"],
-            theme="bootstrap",
         ),
         html.Hr(),
         html.Div(id="sql-output"),

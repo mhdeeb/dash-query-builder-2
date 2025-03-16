@@ -3,7 +3,7 @@ import {
   Fields,
   JsonTree,
   JsonLogicTree,
-} from "@react-awesome-query-builder/ui";
+} from "@react-awesome-query-builder/bootstrap";
 /**
  * Every Dash components are given these props.
  * Use with your own props:

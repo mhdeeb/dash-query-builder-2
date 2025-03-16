@@ -9,7 +9,7 @@ import {
   Config,
   ImmutableTree,
   BuilderProps,
-} from "@react-awesome-query-builder/ui";
+} from "@react-awesome-query-builder/bootstrap";
 import { mergeAll } from "ramda";
 import { StyledProps } from "./types";
 
